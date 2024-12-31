@@ -78,7 +78,7 @@ export default function Home() {
             {weather?.main?.temp && Math.round(weather?.main?.temp - 273.15)}°C
           </h2>
           <h3 className="font-Inter text-[#ffffff] text-[27px] font-semibold leading-[33px] text-center">
-            {weather?.description}
+            {weather?.weather?.[0]?.description}
           </h3>
         </div>
         <form
@@ -94,6 +94,7 @@ export default function Home() {
 
           <button
             type="submit"
+            onClick={handleSubmit}
             className="w-[56px] h-[56px] bg-[#ffffff] rounded-[12px] mt-[32px] ml-[16px] flex justify-center items-center shadow-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
           >
             <svg
@@ -101,7 +102,7 @@ export default function Home() {
               width="16"
               height="16"
               fill="currentColor"
-              className="bi bi-search"
+              className="bi bi-search text-[#000000] text-[20px] font-bold leading-[24px] tracking-[0.01em] "
               viewBox="0 0 16 16"
             >
               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
