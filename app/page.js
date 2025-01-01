@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { use, useState, useEffect } from "react";
+import React, { use, useState, useEffect, useCallback } from "react";
 import CloudImg from "../public/Cloud 3.png";
 
 export default function Home() {
@@ -30,7 +30,7 @@ export default function Home() {
 
   const API_KEY = "310df08d9a1e917b569948515c903737";
 
-  const fetchWeatherData = async () => {
+  const fetchWeatherData = useCallback(async () => {
     try {
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
@@ -42,11 +42,11 @@ export default function Home() {
     } catch (err) {
       console.log(err);
     }
-  };
+  }, [city, API_KEY]);
 
   useEffect(() => {
     fetchWeatherData();
-  }, [city]);
+  }, [fetchWeatherData]);
 
   const handleInputChange = (e) => {
     console.log(e.target.value);
@@ -95,12 +95,12 @@ export default function Home() {
           <button
             type="submit"
             onClick={handleSubmit}
-            className="w-[56px] h-[56px] bg-[#ffffff] rounded-[12px] mt-[32px] ml-[16px] flex justify-center items-center shadow-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            className="w-[56px] h-[56px] bg-[#ffffff]  rounded-[12px] mt-[32px] ml-[16px] flex justify-center items-center shadow-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
+              width="18"
+              height="18"
               fill="currentColor"
               className="bi bi-search text-[#000000] text-[20px] font-bold leading-[24px] tracking-[0.01em] "
               viewBox="0 0 16 16"
